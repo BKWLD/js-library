@@ -1,0 +1,22 @@
+{
+  "name": "js-library",
+  "version": "0.1.0",
+  "homepage": "https://github.com/BKWLD/js-library",
+  "authors": [
+    "Robert Reinhard <info@bkwld.com>",
+    "Matt Aebersold <info@bkwld.com>"
+  ],
+  "description": "JS utility modules",
+  "keywords": [
+    "bkwld",
+    "js",
+    "amd",
+    "utils"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "README.md"
+  ]
+}
