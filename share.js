@@ -3,11 +3,11 @@
  * the list of supported services.  Example usage:
  *
  * share('service', {
- *  url: 'url',                 // Required
- * 	title:'Title', 
- * 	description: 'Description', 
- * 	image:'Image',
- * 	domain: 'domain'            // Like http://bkwld.com
+ *   url: 'url',                 // Required
+ *   title:'Title', 
+ *   description: 'Description', 
+ *   image:'Image',
+ *   domain: 'domain'            // Like http://bkwld.com
  * });
  *  
  */
@@ -53,5 +53,5 @@ define(function (require) {
 		// Check to make sure selected service is listed below
 		if (!urls[service]) return false;
 		return window.open(urls[service],'sharer','toolbar=0,status=0,width=548,height=325');
-	}
+	};
 });
