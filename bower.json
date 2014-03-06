@@ -7,6 +7,13 @@
     "Matt Aebersold <info@bkwld.com>"
   ],
   "description": "JS utility modules",
+  "dependencies": {
+    "jquery": "~1",
+    "lodash": "~2",
+    "backbone": "~1",
+    "jquery-hammerjs": "~1",
+    "tram": "~0"
+  },
   "keywords": [
     "bkwld",
     "js",
