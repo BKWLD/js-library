@@ -6,7 +6,7 @@ define(function (require) {
   
 	// Dependencies
 	var $ = require('jquery')
-		, _ = require('underscore')
+		, _ = require('lodash')
 	;
 	
 	// Cache

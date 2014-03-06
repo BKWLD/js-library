@@ -12,7 +12,7 @@ define(function (require) {
 	
 	// dependencies
 	var $ = require('jquery')
-		, _ = require('underscore')
+		, _ = require('lodash')
 		, $win = $(window)
 	;
 	

@@ -17,7 +17,7 @@ define(function (require) {
 	
 	// Dependencies
 	var $ = require('jquery')
-		, _ = require('underscore')
+		, _ = require('lodash')
 		, Backbone = require('backbone')
 		, tram = require('tram')
 		, $win = $(window)
