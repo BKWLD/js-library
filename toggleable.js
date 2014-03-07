@@ -1,3 +1,4 @@
+/*jshint smarttabs:true */
 /**
  * Show and hide elements when other elements are clicked.
  *
@@ -61,7 +62,7 @@ define(function (require) {
 	// to be chained onto it
 	function MapFactory(mapping) {
 		this.mapping = mapping;
-		return { showFirst: _.bind(showFirst, this) }
+		return { showFirst: _.bind(showFirst, this) };
 	}
 
 	// Enable the first item in a mapping
