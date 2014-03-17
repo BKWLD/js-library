@@ -29,25 +29,30 @@ define(function (require) {
 
 		// Make a jquery collection of all of the toggleable elements
 		var $toggleables = _.reduce(mapping, function($set, pair) {
-			return $set.add(pair.show);
+			if (pair.show) return $set.add(pair.show);
+			else return $set;
 		}, $());
 
 		// Loop through the mappings and assign click listeners
 		_.each(mapping, function(pair) {
 
 			// Required properties
-			if (!_.has(pair, 'on') || !_.has(pair, 'show')) 
-				return console.error('Both "on" and "show" need to be defined on each toggleable pair');
+			if (!_.has(pair, 'on')) return console.error('"On" needs to be defined on each toggleable pair');
+
+			// Defaults
+			_.defaults(pair, {
+				show: null
+			});			
 
 			// Assign listener, assume that on and show are already
 			// wrapped in jQuery.
 			pair.on.hammer().on('tap', function() {
-				
+
 				// Hide everything but the selection
 				$toggleables.not(pair.show).hide();
 
 				// Then show the selected one
-				pair.show.show();
+				if (pair.show) pair.show.show();
 			});
 
 		});
