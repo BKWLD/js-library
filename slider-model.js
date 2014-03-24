@@ -7,7 +7,7 @@
  *
  *    // Initialize manager
  *    this.manager = new SliderModel({
- *    	pages: this.$('.jump-link').length
+ *       pages: this.$('.jump-link').length
  *    });
  *     
  *    // Handle user interaction
@@ -60,8 +60,7 @@ define(function (require) {
 		if (missing.length !== 0) {
 			return console.error('slider-manager is missing required configs:', missing);
 		}
-
-	}
+	};
 
 	// Handle back UI events
 	Model.back = function(e) { 
@@ -75,7 +74,7 @@ define(function (require) {
 		var page = this.get('page');
 		if (page < this.config.pages - 1) this.set('page', page+1);
 		else if (this.config.loop) this.set('page', 0);
-	}
+	};
 
 	// Jump directly to a page.  This assumes that this method is directly handling
 	// a UI event from an element that is one in a set where each of it's siblings
