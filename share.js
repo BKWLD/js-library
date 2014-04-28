@@ -52,6 +52,7 @@ define(function (require) {
 		
 		// Check to make sure selected service is listed below
 		if (!urls[service]) return false;
-		return window.open(urls[service],'sharer','toolbar=0,status=0,width=548,height=325');
+		else if (service == 'email') window.location = urls[service];
+		else return window.open(urls[service],'sharer','toolbar=0,status=0,width=548,height=325');
 	};
 });
