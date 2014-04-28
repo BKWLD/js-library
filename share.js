@@ -19,11 +19,12 @@ define(function (require) {
 	return function(service, data) {
 
 		// Defaults
-		var title = (data.title || $('title').text()).trim(),
-			description = (data.description || '').trim(),
-			image = (data.image || '').trim(),
-			domain = (data.domain || ('http://'+window.location.hostname)).trim(),
-			url = (data.url || window.location.href).trim()
+		var data = data || {}
+			, title = (data.title || $('title').text()).trim()
+			, description = (data.description || '').trim()
+			, image = (data.image || '').trim()
+			, domain = (data.domain || ('http://'+window.location.hostname)).trim()
+			, url = (data.url || window.location.href).trim()
 		;
 
 		// Build urls
