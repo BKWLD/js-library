@@ -7,13 +7,15 @@
  *
  *    // Initialize manager
  *    this.manager = new SliderModel({
- *       pages: this.$('.jump-link').length
+ *       pages: this.$('.jump-link').length, 
+ *       auto_advance_seconds: 4
  *    });
  *     
  *    // Handle user interaction
  *    this.$('.left-arrow').hammer().on('tap', this.manager.back);
  *    this.$('.right-arrow').hammer().on('tap', this.manager.next);
  *    this.$('.jump-link').hammer().on('tap', this.manager.jumpFromPagesList);
+ *    this.manager.stopAutoAdvanceOnHoverOf(this.$el);
  *    
  *    // Change the page
  *    this.manager.on('change:page', this.change);
@@ -28,6 +30,7 @@ define(function (require) {
 	var $ = require('jquery')
 		, _ = require('lodash')
 		, Backbone = require('backbone')
+		, $win = $(window)
 	;
 	
 	// Setup model
@@ -47,9 +50,8 @@ define(function (require) {
 			// to the first.  And the inverse when using back buttons
 			loop: true
 
-			// NOT CURRENTLY IMPLEMENTED, ONLY STUBBING OUT FOR FUTURE
 			// Set to a number of seconds to turn on auto advancing
-			// and set the number fo seconds between advancing
+			// and set the number of seconds between advancing
 			, auto_advance_seconds: false
 		
 		}, config || {});
@@ -60,6 +62,10 @@ define(function (require) {
 		if (missing.length !== 0) {
 			return console.error('slider-manager is missing required configs:', missing);
 		}
+
+		// If an auto advance seconds number has been set, start the auto
+		// advance timer
+		if (this.config.auto_advance_seconds) this.enableAutoAdvance(this.config.auto_advance_seconds);
 	};
 
 	// Handle back UI events
@@ -82,6 +88,57 @@ define(function (require) {
 	// is 5, the e.currentTarget has 4 OTHER siblings.
 	Model.jumpFromPagesList = function(e) {
 		this.set('page', $(e.currentTarget).index());
+	};
+
+	// Register auto advance listeners and begin
+	Model.enableAutoAdvance = function(delay) {
+
+		// Set the delay, this allows this function to be called
+		// externally
+		this.config.auto_advance_seconds = delay;
+
+		// Start and stop on window blur, like when the user switches tabs
+		$win.on('blur', this.stopAutoAdvance);
+		$win.on('focus', this.startAutoAdvance);
+
+		// Immediately start auto advancing
+		this.startAutoAdvance();
+
+	};
+
+	// Register a DOM element that will stop auto advancing when
+	// hovered over.
+	Model.stopAutoAdvanceOnHoverOf = function($el) {
+		$el.on('mouseenter', this.stopAutoAdvance);
+		$el.on('mouseleave', this.startAutoAdvance);
+	};
+
+	// Start auto-advancing
+	Model.startAutoAdvance = function() {
+
+		// Require a second count to be set
+		if (!this.config.auto_advance_seconds) return;
+
+		// Stop if there is already an active timer
+		if (this.auto_advance_id) return;
+
+		// Start the timer
+		this.auto_advance_id = _.delay(function(self) {
+
+			// Show next slide
+			self.next();
+
+			// Reset the timer and go again
+			self.auto_advance_id = null;
+			self.startAutoAdvance();
+		}, this.config.auto_advance_seconds * 1000, this);
+	};
+
+	// Stop auto-advancing
+	Model.stopAutoAdvance = function() {
+		if (!this.auto_advance_id) return;
+		clearTimeout(this.auto_advance_id);
+		this.auto_advance_id = null;
 	};
 
 	// Return model class
