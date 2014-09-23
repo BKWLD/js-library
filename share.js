@@ -47,7 +47,7 @@ define(function (require) {
 
 			'deeplink' : url,
 
-			'email' : 'mailto:?'+$.param({subject:title, body:description+url})
+			'email' : 'mailto:?subject='+title+'&body='+description+url
 
 		};
 		
