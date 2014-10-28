@@ -12,9 +12,9 @@
  *    });
  *     
  *    // Handle user interaction
- *    this.$('.left-arrow').hammer().on('tap', this.manager.back);
- *    this.$('.right-arrow').hammer().on('tap', this.manager.next);
- *    this.$('.jump-link').hammer().on('tap', this.manager.jumpFromPagesList);
+ *    this.$('.left-arrow').on('tap', this.manager.back);
+ *    this.$('.right-arrow').on('tap', this.manager.next);
+ *    this.$('.jump-link').on('tap', this.manager.jumpFromPagesList);
  *    this.manager.stopAutoAdvanceOnHoverOf(this.$el);
  *    
  *    // Change the page

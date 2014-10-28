@@ -22,7 +22,6 @@ define(function (require) {
 	// Dependencies
 	var $ = require('jquery')
 		, _ = require('lodash')
-		, hammerjs = require('jquery-hammerjs')
 	;
 
 	// Setup toggleablility given a mapping array of objects
@@ -47,7 +46,7 @@ define(function (require) {
 
 			// Assign listener, assume that on and show are already
 			// wrapped in jQuery.
-			pair.on.hammer().on('tap', function() {
+			pair.on.on('click', function() {
 
 				// Hide everything but the selection
 				$toggleables.not(pair.show).hide();
