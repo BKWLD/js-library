@@ -1,6 +1,6 @@
 {
   "name": "js-library",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "homepage": "https://github.com/BKWLD/js-library",
   "authors": [
     "Robert Reinhard <info@bkwld.com>",
@@ -12,7 +12,6 @@
     "jquery": "~1",
     "lodash": "~2",
     "backbone": "~1",
-    "jquery-hammerjs": "~1",
     "tram": "~0"
   },
   "keywords": [
