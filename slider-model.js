@@ -12,9 +12,9 @@
  *    });
  *     
  *    // Handle user interaction
- *    this.$('.left-arrow').on('tap', this.manager.back);
- *    this.$('.right-arrow').on('tap', this.manager.next);
- *    this.$('.jump-link').on('tap', this.manager.jumpFromPagesList);
+ *    this.$('.left-arrow').on('click', this.manager.back);
+ *    this.$('.right-arrow').on('click', this.manager.next);
+ *    this.$('.jump-link').on('click', this.manager.jumpFromPagesList);
  *    this.manager.stopAutoAdvanceOnHoverOf(this.$el);
  *    
  *    // Change the page
@@ -22,6 +22,8 @@
  *
  * - Here's an example of the change handler: https://gist.github.com/weotch/9494115
  * - See the intialize method for a list of configuration options.
+ * - The `direction` property gets set on the model automatically and will tell you 
+ *   which direction the page change is happening, "1" or "-1"
  * 
  */
 define(function (require) {
@@ -37,7 +39,7 @@ define(function (require) {
 	var Model = {};
 
 	// Start on page 0
-	Model.defaults = { page: 0 };
+	Model.defaults = { page: 0, direction: 0 };
 
 	// Pass in configuration in the constructor
 	Model.initialize = function(config) {
@@ -71,15 +73,38 @@ define(function (require) {
 	// Handle back UI events
 	Model.back = function(e) { 
 		var page = this.get('page');
-		if (page > 0) this.set('page', page-1);
-		else if (this.config.loop) this.set('page', this.config.pages-1);
+		if (page > 0) page--;
+		else if (this.config.loop) page = this.config.pages-1;
+		this.set({ page: page, direction: -1 });
 	};
 
 	// Handle next UI events
 	Model.next = function(e) { 
 		var page = this.get('page');
-		if (page < this.config.pages - 1) this.set('page', page+1);
-		else if (this.config.loop) this.set('page', 0);
+		if (page < this.config.pages - 1) page++;
+		else if (this.config.loop) page = 0;
+		this.set({ page: page, direction: 1 });
+	};
+
+	// Subclass the set() method to auto set "direction" if it isn't explicitly set
+	Model.set = function(attributes, options) {
+
+		// Create attributes object if it's shorthand is being used.  So that testing
+		// is simpler in later steps
+		if (_.isString(attributes))  {
+			var hash = {};
+			hash[attributes] = options;
+			attributes = hash;
+		}
+
+		// If no `direction` set, calculate it.  The `loop` config doesn't affec this
+		// because this is probably being called by jumping to a frame.
+		if (!_.has(attributes, 'direction') && _.has(attributes, 'page')) {
+			attributes.direction = attributes.page - this.get('page') > 0 ? 1 : -1;
+		}
+
+		// Pass call to parent
+		Backbone.Model.prototype.set.call(this, attributes, options);
 	};
 
 	// Jump directly to a page.  This assumes that this method is directly handling
