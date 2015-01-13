@@ -20,7 +20,7 @@ define(function (require) {
 
 			// Add listener
 			$document.on('click', function(e) {
-				if ($el.is(e.target) || $el.has(e.target).length) return;
+				if ($el.is(e.target) || $el.has(e.target).length === 0) return;
 
 				// Remove listener and invoke callback
 				$document.off('click', arguments.callee);
