@@ -1,7 +1,7 @@
 /**
  * Listen for a click outside, fire callback, and then remove yoself
  *
- * Ex: this.$el.onClickOutside(this.close);
+ * Ex: this.$modal.onClickOutside(this.close);
  */
 define(function (require) {
 	
