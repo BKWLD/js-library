@@ -1,5 +1,6 @@
 /**
- * Listen for a click outside, fire callback, and then remove yoself
+ * Listen for a click outside, fire callback, and then remove yoself.
+ * Based on: http://stackoverflow.com/a/7385673/59160
  *
  * Ex: this.$modal.onClickOutside(this.close);
  */
