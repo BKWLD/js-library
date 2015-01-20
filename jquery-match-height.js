@@ -33,6 +33,7 @@ define(function (require) {
 		$els.removeMatchHeight = function() {
 			$els.css('height', '');
 			$win.off('orientationchange resize load', $els.matchHeightResizeCallback);
+			$els.matchHeightResizeCallback = null;
 		};
 		
 		// Match heights of all els
