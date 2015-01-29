@@ -29,10 +29,15 @@ define(function (require) {
 
 		// Build urls
 		var urls = {
+			
+			// To share media, use Twitter cards
+			// https://dev.twitter.com/cards/overview
 			'twitter' : 'https://twitter.com/intent/tweet?tw_p=tweetbutton&'+$.param({original_referer:domain, text:(title+' '+url) }),
 			
 			'pinterest' : 'http://pinterest.com/pin/create/extension/?'+$.param({media:image, url:url, description:(title+"\n"+description) }),
 
+			// To customize the messaging, use Open Graph
+			// http://ogp.me/
 			'facebook' : 'http://www.facebook.com/sharer.php?m2w&s=100&'+$.param({'p[title]':title, 'p[summary]':description, 'p[url]':url, 'p[images][0]':image}),
 
 			'google+' : 'https://plus.google.com/share?'+$.param({url:url}),
