@@ -34,7 +34,7 @@ define(function (require) {
 			// https://dev.twitter.com/cards/overview
 			'twitter' : 'https://twitter.com/intent/tweet?tw_p=tweetbutton&'+$.param({original_referer:domain, text:(title+' '+url) }),
 			
-			'pinterest' : 'http://pinterest.com/pin/create/extension/?'+$.param({media:image, url:url, description:(title+"\n"+description) }),
+			'pinterest' : 'http://pinterest.com/pin/create/extension/?'+$.param({media:image, url:url, description:(title+"\n\n"+description) }),
 
 			// To customize the messaging, use Open Graph
 			// http://ogp.me/
