@@ -39,12 +39,14 @@ define(function (require) {
 		// Match heights of all els
 		function match() {
 			
-			// Respect responsive bounds
-			if (options.minWidth && $win.width() <= options.minWidth) return;
-			else if (options.maxWidth && $win.width() >= options.maxWidth) return;
-			
 			// Reset $els to native height
 			$els.css('height', '');
+			
+			// Respect responsive bounds, keeping native height set above
+			if (options.minWidth && $win.width() <= options.minWidth ||
+			    options.maxWidth && $win.width() >= options.maxWidth) {
+				return;
+			}
 			
 			// Measure to get tallest
 			var h = _.reduce($els, function(memo, el) {
