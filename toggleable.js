@@ -62,6 +62,17 @@ define(function (require) {
 
 	}
 
+	// Helper to make a mapping based on the value of radio input fields and
+	// targeting elements based on the presence of [data-show-on=val] attribtues
+	function radios($radios) {
+		return map(_.map(function($el) {
+			return {
+				on: $el,
+				show: $('[data-show-on="'+$el.attr('value')+'"]')
+			}
+		}, $radios.toArray()));
+	}
+
 	// This class constructor wraps a mapping definition and lets other methods
 	// to be chained onto it
 	function MapFactory(mapping) {
@@ -75,6 +86,9 @@ define(function (require) {
 	}
 
 	// API of the module
-	return { map: map };
+	return { 
+		map: map,
+		radios: radios
+	};
 
 });
