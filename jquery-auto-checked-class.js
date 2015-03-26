@@ -30,6 +30,13 @@ define(function (require) {
 	 * @return {jQuery}
 	 */
 	$.fn.autoCheckedClass = function(options) {
+
+		// Automatically add Fastclick's `needsclick` so that double change
+		// events aren't fired.
+		// https://github.com/ftlabs/fastclick#ignore-certain-elements-with-needsclick
+		this.addClass('needsclick');
+
+		// Toggle class
 		if (options == 'remove') this.off('change', autoCheck);
 		else this.on('change', autoCheck);
 		return this;
