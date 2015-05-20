@@ -35,6 +35,9 @@ define(function (require) {
 			// nothing
 			href == '' ||	
 			
+			// a mailto link
+			/^mailto:/.test(href) ||
+			
 			// relative anchor	 
 			href[0] == '#' ||
 			
