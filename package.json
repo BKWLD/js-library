@@ -1,6 +1,6 @@
 {
   "name": "js-library",
-  "version": "5.0.0",
+  "version": "0.13.0",
   "description": "JS utility modules",
   "directories": {
     "test": "tests"
