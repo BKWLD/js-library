@@ -1,6 +1,6 @@
 {
-  "name": "js-library",
-  "version": "0.13.0",
+  "name": "bkwld-js-library",
+  "version": "0.13.1",
   "description": "JS utility modules",
   "directories": {
     "test": "tests"
