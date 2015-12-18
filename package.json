@@ -1,0 +1,21 @@
+{
+  "name": "js-library",
+  "version": "5.0.0",
+  "description": "JS utility modules",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BKWLD/js-library.git"
+  },
+  "author": "info@bkwld.com",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/BKWLD/js-library/issues"
+  },
+  "homepage": "https://github.com/BKWLD/js-library#readme"
+}
