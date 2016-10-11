@@ -52,13 +52,13 @@ define(function (require) {
 
 			'deeplink' : url,
 
-			'email' : 'mailto:?subject='+title+'&body='+description+url
+			'email' : 'mailto:?subject='+encodeURIComponent(title)+'&body='+encodeURIComponent(description+url)
 
 		};
 
 		// Check to make sure selected service is listed below
 		if (!urls[service]) return false;
-		else if (service == 'email') window.location = urls[service];
+		else if (service == 'email') document.location.href = urls[service];
 		else return window.open(urls[service],'sharer','toolbar=0,status=0,width=548,height=325');
 	};
 });
